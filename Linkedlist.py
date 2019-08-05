@@ -134,7 +134,7 @@ class CycleSingleLinkList:
         node1 = node(data)
         if self.isEmpty():
             self.head = node1
-            node.next = node1
+            node1.next = node1
         
         else:
             temp = self.head
@@ -148,7 +148,7 @@ class CycleSingleLinkList:
         node1 = node(data)
         if self.isEmpty():
             self.head = node1
-            node.next = node1
+            node1.next = node1
         
         else:
             temp = self.head
