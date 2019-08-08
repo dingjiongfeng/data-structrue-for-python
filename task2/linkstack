@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+struct node {
+	int data;
+	node* next;
+};
+
+class linkstack {
+private:
+	node* top;
+public:
+	void initstack();
+	void push(int x);
+	bool isEmpty();
+	int pop();
+	int stackTop();
+	void traverse();
+};
+
+bool linkstack::isEmpty() {
+	if (top == NULL)
+		return true;
+	return false;
+}
+
+void linkstack::initstack() {
+	top = nullptr;
+}
+void linkstack::push(int x) {
+	node* next1 = new node();
+	next1->data = x;
+	next1->next = top;
+	top = next1; 
+}
+int linkstack::pop() {
+	if (isEmpty()) {
+		cout << "栈为空" << endl;
+		return 0;
+	}
+	else {
+		node* temp = top;
+		top = top->next;
+		return temp->data;
+	}
+}
+int linkstack::stackTop() {
+	return top->data;
+}
+void linkstack::traverse() {
+	node* cur = top;
+	while (cur != NULL) {
+		cout << cur->data << " ";
+		cur = cur->next;
+	}
+}
+int main()
+{
+    std::cout << "Hello World!\n";
+	linkstack ls = linkstack();
+	ls.initstack();
+	if (ls.isEmpty()) cout << "栈为空" << endl;
+	ls.push(2);
+	ls.push(3);
+	ls.push(4);
+	ls.push(5);
+	cout<<ls.stackTop();
+	cout << "\n";
+	ls.traverse();
+	cout << "\n";
+	cout<<ls.pop();
+}
