@@ -25,22 +25,24 @@ mysqrt(100)
 def partition(nums,left,right):
     pivot = nums[left]
     while(left<right):
-        while(left<right and nums[left]<=pivot): 
-            left += 1
-        nums[right] = nums[left]
-        while(left<right and nums[right]>=pivot): 
+        while(left<right and nums[right]>pivot): 
             right -= 1
-        nums[left] = nums[right]
+        while(left<right and nums[left]<pivot): 
+            left += 1
+        nums[left] , nums[right] = nums[right] , nums[left]
+        
     nums[left] = pivot
     return left
    
 def Find(Array,left,right,k):
-    index = partition(Array,left,right)
-    if(index == k):
-        return Array[index]
-    if(index < k):
-        return Find(Array,index+1,right,k)
-    else:
-        return Find(Array,left,index-1,k)
+        index = partition(Array,left,right)
+        if(index == k):
+            return Array[index]
+        elif(index < k):
+            return Find(Array,index+1,right,k)
+        else:
+            return Find(Array,left,index-1,k)
 
-Find(nums,0,len(nums)-1,0)
+pai = [10,9,8,7,6,5]
+ 
+print(Find(pai,0,len(pai)-1,0))
