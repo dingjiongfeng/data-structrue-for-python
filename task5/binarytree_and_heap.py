@@ -96,3 +96,24 @@ class BinarySearchTree:
             if now_node.right != None:#将树的右子树入队
                 queue.append(now_node.right)  
                 
+def heapAdjust(arr,start,end):
+    l = 2 * start 
+    temp = arr[start]
+    while l <= end:
+        if l<end and arr[l] < arr[l+1]:
+            l += 1
+        if temp >= arr[l]:
+            break
+        arr[start] = arr[l]
+        start = l
+        l *= 2
+    arr[start] = temp
+        
+        
+def heapSort(arr):
+    length = len(arr)
+    for start in range(length//2-1,-1,-1):
+        heapAdjust(arr,start,length-1)
+    for end in range(length-1,0,-1):
+        arr[end],arr[0] = arr[0],arr[end]
+        heapAdjust(arr,0,end-1)
